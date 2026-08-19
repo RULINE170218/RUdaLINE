@@ -1,0 +1,14 @@
+<style>
+nav a {
+    text-decoration: none;
+    margin-right: 20px;
+}
+</style>
+
+<nav>
+  <a href="index.html">🏠 홈</a>
+  <a href="railway.html">🚆 루다철도</a>
+  <a href="rudaair.html">✈️ 루다에어</a>
+  <a href="rudasing.html">🏢 루다싱스</a>
+  <a href="patchnote.html">📋 패치노트</a>
+</nav>
