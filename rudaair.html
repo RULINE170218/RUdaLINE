@@ -1,303 +1,1357 @@
-ehla
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>루다에어 | RULINE</title>
+<title>RUDAAIR | 루다에어</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 30px;
-    line-height: 1.6;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans KR",sans-serif;
+  background:#f3f7fc;
+  color:#172033;
+  transition:.25s;
 }
 
-nav {
-    margin-bottom: 25px;
+body.dark{
+  background:#0b1220;
+  color:#edf4ff;
 }
 
-nav a {
-    text-decoration: none;
-    margin-right: 20px;
-    font-weight: bold;
+header{
+  background:linear-gradient(135deg,#0877ff,#0051c7);
+  color:white;
+  padding:18px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-hr {
-    margin: 20px 0;
+.logo{
+  font-size:25px;
+  font-weight:900;
 }
 
-.section {
-    margin-top: 30px;
+nav{
+  display:flex;
+  gap:20px;
+  align-items:center;
 }
 
-.card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px 0;
+nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
 }
 
-.info {
-    line-height: 2;
+.dark-btn{
+  border:0;
+  background:rgba(255,255,255,.2);
+  color:white;
+  border-radius:10px;
+  padding:9px 12px;
+  cursor:pointer;
 }
 
-h1 {
-    font-size: 40px;
+.hero{
+  padding:65px 20px;
+  text-align:center;
+  background:
+    linear-gradient(rgba(0,90,210,.82),rgba(0,90,210,.82)),
+    url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80")
+    center/cover;
+  color:white;
 }
 
-.slogan {
-    font-size: 22px;
-    font-weight: bold;
+.hero h1{
+  font-size:48px;
+  margin:0 0 12px;
+}
+
+.hero p{
+  font-size:20px;
+}
+
+.container{
+  max-width:1050px;
+  margin:35px auto;
+  padding:0 20px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:25px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.dark .card{
+  background:#151f31;
+  box-shadow:none;
+}
+
+.search-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+select,input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccd5e1;
+  border-radius:11px;
+  font-size:15px;
+  background:white;
+  color:#172033;
+}
+
+.dark select,
+.dark input{
+  background:#0e1727;
+  color:white;
+  border-color:#33445d;
+}
+
+.main-btn{
+  width:100%;
+  margin-top:20px;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#0877ff;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.main-btn:hover{
+  background:#005ed8;
+}
+
+.hidden{
+  display:none;
+}
+
+.flight{
+  border:1px solid #dbe3ed;
+  border-radius:17px;
+  padding:20px;
+  margin-top:15px;
+  transition:.2s;
+}
+
+.dark .flight,
+.dark .airport{
+  border-color:#33445d;
+}
+
+.flight:hover{
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+  transform:translateY(-2px);
+}
+
+.flight-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.flight-number{
+  font-size:23px;
+  font-weight:900;
+}
+
+.route{
+  font-size:21px;
+  font-weight:bold;
+  margin:15px 0;
+}
+
+.time{
+  font-size:18px;
+}
+
+.aircraft{
+  color:#687386;
+  margin-top:8px;
+}
+
+.dark .aircraft{
+  color:#9daabd;
+}
+
+.badge{
+  display:inline-block;
+  background:#e9f2ff;
+  color:#0877ff;
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.status{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:bold;
+  margin-left:6px;
+}
+
+.on-time{background:#e8fff0;color:#159447}
+.delay{background:#fff5d9;color:#9a6a00}
+.boarding{background:#e8f3ff;color:#0877ff}
+.arrived{background:#edf0f5;color:#596273}
+.cancelled{background:#ffe8e8;color:#c62828}
+
+.select-btn{
+  border:0;
+  border-radius:10px;
+  padding:12px 18px;
+  background:#111827;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.select-btn:disabled{
+  background:#9aa2ad;
+  cursor:not-allowed;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.stat{
+  padding:18px 10px;
+  border-radius:15px;
+  text-align:center;
+  background:#f3f7fc;
+  font-weight:bold;
+}
+
+.dark .stat{
+  background:#0e1727;
+}
+
+.stat strong{
+  display:block;
+  font-size:25px;
+  margin-top:5px;
+}
+
+.stat.green strong{color:#159447}
+.stat.yellow strong{color:#b17b00}
+.stat.blue strong{color:#0877ff}
+.stat.gray strong{color:#596273}
+.stat.red strong{color:#d22}
+
+.seats{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:9px;
+  max-width:500px;
+  margin-top:20px;
+}
+
+.seat{
+  border:0;
+  border-radius:9px;
+  padding:12px 4px;
+  background:#e7edf5;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.seat.selected{
+  background:#0877ff;
+  color:white;
+}
+
+.seat.taken{
+  background:#555;
+  color:white;
+  cursor:not-allowed;
+}
+
+.success{
+  text-align:center;
+  background:#eafff0;
+  border:1px solid #9ee0b5;
+  border-radius:16px;
+  padding:25px;
+}
+
+.success h2{
+  color:#159447;
+}
+
+.boarding-pass{
+  max-width:500px;
+  margin:25px auto 0;
+  background:white;
+  color:#172033;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 8px 30px rgba(0,0,0,.12);
+  text-align:left;
+}
+
+.pass-top{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px dashed #aaa;
+  padding-bottom:15px;
+}
+
+.pass-route{
+  font-size:30px;
+  font-weight:900;
+  text-align:center;
+  margin:25px 0;
+}
+
+.pass-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.pass-item small{
+  color:#777;
+  display:block;
+}
+
+.pass-item strong{
+  font-size:18px;
+}
+
+.fake-qr{
+  font-family:monospace;
+  font-size:18px;
+  letter-spacing:3px;
+  text-align:center;
+  margin-top:20px;
+  padding:15px;
+  border:1px solid #ddd;
+}
+
+.airports{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+
+.airport{
+  padding:16px;
+  border:1px solid #dce4ee;
+  border-radius:13px;
+}
+
+.airport strong{
+  color:#0877ff;
+}
+
+.aircraft-box{
+  border:1px solid #dce4ee;
+  border-radius:15px;
+  padding:18px;
+  margin-top:12px;
+}
+
+footer{
+  background:#111827;
+  color:#d9e0ea;
+  text-align:center;
+  padding:35px;
+  margin-top:50px;
+}
+
+@media(max-width:700px){
+  .search-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .airports{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero h1{
+    font-size:35px;
+  }
+
+  nav{
+    display:none;
+  }
+}
+
+@media(max-width:450px){
+  .airports{
+    grid-template-columns:1fr;
+  }
+
+  .seats{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
 }
 </style>
-
 </head>
 
 <body>
 
-<!-- RULINE 메뉴 -->
+<header>
+  <div class="logo">✈️ RUDAAIR</div>
 
-<nav>
+  <nav>
+    <a href="#search">항공편</a>
+    <a href="#status">운항 현황</a>
+    <a href="#airports">공항</a>
+    <a href="#fleet">기체</a>
+  </nav>
 
-<a href="index.html">🏠 홈</a>
+  <button class="dark-btn" onclick="toggleDark()">🌙</button>
+</header>
 
-<a href="railway.html">🚆 루다철도</a>
+<section class="hero">
+  <h1>늘 빠르고 편안하게</h1>
+  <p>RUDAAIR · RF</p>
+</section>
 
-<a href="rudaair.html">✈️ 루다에어</a>
+<div class="container">
 
-<a href="rudasing.html">🏢 루다싱스</a>
+<section class="card" id="status">
 
-<a href="patchnote.html">📋 패치노트</a>
+  <h2>📊 오늘의 루다에어 운항 현황</h2>
 
-</nav>
+  <div class="stats">
 
-<hr>
+    <div class="stat">
+      ✈️ 총 운항
+      <strong id="totalFlights">0</strong>
+    </div>
 
-<!-- 루다에어 -->
+    <div class="stat green">
+      🟢 정시
+      <strong id="onTime">0</strong>
+    </div>
 
-<h1>✈️ 루다에어</h1>
+    <div class="stat yellow">
+      🟡 지연
+      <strong id="delayed">0</strong>
+    </div>
 
-<p class="slogan">
-“늘 빠르고 편안하게”
-</p>
+    <div class="stat blue">
+      🔵 탑승 중
+      <strong id="boarding">0</strong>
+    </div>
 
-<p>
-RULINE 세계관의 가상 항공사입니다.
-</p>
+    <div class="stat gray">
+      🛬 도착
+      <strong id="arrived">0</strong>
+    </div>
 
-<!-- 항공사 소개 -->
+    <div class="stat red">
+      🔴 결항
+      <strong id="cancelled">0</strong>
+    </div>
 
-<div class="section">
+  </div>
 
-<h2>🏢 항공사 소개</h2>
+</section>
 
-<div class="card">
 
-<p>
-<strong>루다에어</strong>는 루다 세계의 여러 지역을
-연결하는 가상 항공사입니다.
-</p>
+<section class="card" id="search">
 
-<p>
-편안하고 안전한 항공 서비스를 제공하며,
-루다국제공항을 중심으로 운항합니다.
-</p>
+  <h2>🔎 항공편 검색</h2>
+  <p>출발지와 도착지를 선택하세요.</p>
+
+  <div class="search-grid">
+
+    <div>
+      <label>출발 공항</label>
+      <select id="from"></select>
+    </div>
+
+    <div>
+      <label>도착 공항</label>
+      <select id="to"></select>
+    </div>
+
+    <div>
+      <label>출발 날짜</label>
+      <input type="date" id="date">
+    </div>
+
+    <div>
+      <label>항공편 번호 직접 검색</label>
+      <input id="flightSearch" placeholder="예: RF101">
+    </div>
+
+  </div>
+
+  <button class="main-btn" onclick="searchFlights()">
+    ✈️ 항공편 검색
+  </button>
+
+</section>
+
+
+<section class="card hidden" id="results">
+
+  <h2>🛫 운항편</h2>
+
+  <div id="flightList"></div>
+
+</section>
+
+
+<section class="card hidden" id="seatCard">
+
+  <h2>💺 좌석 선택</h2>
+
+  <p id="selectedFlightInfo"></p>
+
+  <div class="seats" id="seatMap"></div>
+
+  <button class="main-btn" onclick="completeBooking()">
+    🎫 예약 테스트 완료
+  </button>
+
+</section>
+
+
+<section class="card hidden" id="complete">
+
+  <div class="success">
+
+    <h2>🎉 예약 완료!</h2>
+
+    <p>루다에어 테스트 예약이 완료되었습니다.</p>
+
+    <p id="bookingInfo"></p>
+
+    <button class="main-btn" onclick="showBoardingPass()">
+      📱 모바일 탑승권 보기
+    </button>
+
+    <div id="boardingPass" class="hidden"></div>
+
+    <button class="main-btn" onclick="location.reload()">
+      🔄 처음으로
+    </button>
+
+  </div>
+
+</section>
+
+
+<section class="card" id="airports">
+
+  <h2>🌏 RUDAAIR 공항</h2>
+
+  <div class="airports" id="airportList"></div>
+
+</section>
+
+
+<section class="card" id="fleet">
+
+  <h2>✈️ 루다에어 보유 기체</h2>
+
+  <div id="fleetList"></div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>✈️ RUDAAIR</h2>
+
+  <p>루다에어는 루다 세계관의 가상 항공사입니다.</p>
+
+  <p>
+    항공사 코드: <strong>RF</strong><br>
+    허브: <strong>RDA</strong><br>
+    핸들러: <strong>루다에어포트</strong><br>
+    슬로건: <strong>늘 빠르고 편안하게</strong>
+  </p>
+
+  <p>※ 본 사이트는 시뮬레이션용입니다.</p>
+
+</section>
 
 </div>
-
-</div>
-
-<!-- 항공사 정보 -->
-
-<div class="section">
-
-<h2>📋 항공사 정보</h2>
-
-<div class="card info">
-
-<strong>항공사명:</strong> 루다에어<br>
-
-<strong>IATA 코드:</strong> RF<br>
-
-<strong>모회사:</strong> 루다싱스, 루라인<br>
-
-<strong>지상 조업자:</strong> 루다에어포트<br>
-
-<strong>슬로건:</strong> 늘 빠르고 편안하게
-
-</div>
-
-</div>
-
-<!-- 노선 -->
-
-<div class="section">
-
-<h2>🛫 운항 노선</h2>
-
-<div class="card">
-
-<h3>RDA01</h3>
-
-<p>
-🛫 <strong>루다국제공항</strong>
-</p>
-
-<p>
-↕️
-</p>
-
-<p>
-🛬 <strong>루천공항</strong>
-</p>
-
-<p>
-<strong>루다국제공항 ↔ 루천공항</strong>
-</p>
-
-</div>
-
-</div>
-
-<!-- 항공기 -->
-
-<div class="section">
-
-<h2>✈️ 보유 항공기</h2>
-
-<div class="card">
-
-<ul>
-
-<li>
-<strong>B787-9 Dreamliner</strong> — 1대
-</li>
-
-<li>
-<strong>A330-231</strong> — 1대
-</li>
-
-<li>
-<strong>A321neo</strong> — 2대
-</li>
-
-</ul>
-
-<hr>
-
-<p>
-<strong>총 보유 항공기: 4대</strong>
-</p>
-
-</div>
-
-</div>
-
-<!-- 공항 -->
-
-<div class="section">
-
-<h2>🛬 운항 공항</h2>
-
-<div class="card">
-
-<ul>
-
-<li>✈️ 루다국제공항</li>
-
-<li>✈️ 루천공항</li>
-
-</ul>
-
-</div>
-
-</div>
-
-<!-- 운항 정보 -->
-
-<div class="section">
-
-<h2>🌐 운항 정보</h2>
-
-<div class="card">
-
-<p>
-<strong>운항 노선:</strong> 1개
-</p>
-
-<p>
-<strong>노선 번호:</strong> RDA01
-</p>
-
-<p>
-<strong>운항 구간:</strong>
-루다국제공항 ↔ 루천공항
-</p>
-
-</div>
-
-</div>
-
-<!-- 서비스 -->
-
-<div class="section">
-
-<h2>🛎️ 서비스</h2>
-
-<div class="card">
-
-<ul>
-
-<li>💺 편안한 좌석</li>
-
-<li>🍱 기내 서비스</li>
-
-<li>📺 기내 엔터테인먼트</li>
-
-<li>🧳 수하물 서비스</li>
-
-</ul>
-
-</div>
-
-</div>
-
-<!-- 회사 안내 -->
-
-<div class="section">
-
-<h2>🏢 회사 안내</h2>
-
-<div class="card">
-
-<p>
-루다에어는 RULINE 세계관에서
-루다싱스와 루라인이 운영하는 가상 항공사입니다.
-</p>
-
-<p>
-<strong>“늘 빠르고 편안하게”</strong>
-</p>
-
-</div>
-
-</div>
-
-<hr>
 
 <footer>
-
-<p>
-© RULINE · 루다에어
-</p>
-
-<p>
-✈️ 늘 빠르고 편안하게
-</p>
-
+  ✈️ RUDAAIR · 늘 빠르고 편안하게<br>
+  RF · RDA
 </footer>
+
+
+<script>
+
+/* =========================
+   공항
+========================= */
+
+const airports = {
+
+  RDA:{code:"RDA",iata:"RDA",name:"루다국제공항",type:"국제"},
+  RDO:{code:"RDO",iata:"RUDO",name:"루다도국제공항",type:"국제"},
+  DDA:{code:"DDA",iata:"JUNG",name:"아빠공항",type:"국내"},
+  MDA:{code:"MDA",iata:"JUNG",name:"엄마공항",type:"국내"},
+  RCH:{code:"RCH",iata:"RUCH",name:"루천공항",type:"국내"},
+  RBL:{code:"RBL",iata:"ROBL",name:"로블국제공항",type:"국제"},
+  GPT:{code:"GPT",iata:"CGPT",name:"지피티국제공항",type:"국제"},
+  MJI:{code:"MJI",iata:"MUJI",name:"무지공항",type:"국내"},
+  KOA:{code:"KOA",iata:"KOYA",name:"꼬야꼬야공항",type:"국내"},
+  GMI:{code:"GMI",iata:"GENI",name:"제미나이공항",type:"국제"},
+  GRK:{code:"GRK",iata:"GROK",name:"그록국제공항",type:"국제"},
+  RCI:{code:"RCI",iata:"RUCI",name:"루다도심국내공항",type:"국내"},
+  RSE:{code:"RSE",iata:"RUSE",name:"루다해안공항",type:"국내"},
+  RVA:{code:"RVA",iata:"RUVA",name:"루다밸리국제공항",type:"국제"},
+  RNE:{code:"RNE",iata:"RUNE",name:"루다신도시공항",type:"국제"}
+
+};
+
+
+/* =========================
+   노선
+========================= */
+
+const routes = [
+
+{from:"RDA",to:"RCI",flights:[
+["RF201","06:20","07:05"],
+["RF202","09:20","10:05"],
+["RF203","13:30","14:15"]
+]},
+
+{from:"RDA",to:"RDO",flights:[
+["RF301","07:10","07:55"],
+["RF302","12:10","12:55"],
+["RF303","18:20","19:05"]
+]},
+
+{from:"RDA",to:"RCH",flights:[
+["RF401","08:00","08:45"],
+["RF402","14:00","14:45"]
+]},
+
+{from:"RDA",to:"RSE",flights:[
+["RF221","08:40","09:25"],
+["RF222","16:10","16:55"]
+]},
+
+{from:"RDO",to:"RCI",flights:[
+["RF321","09:10","09:50"],
+["RF322","17:20","18:00"]
+]},
+
+{from:"RCH",to:"MJI",flights:[
+["RF421","10:00","10:40"],
+["RF422","18:00","18:40"]
+]},
+
+{from:"RCI",to:"KOA",flights:[
+["RF241","10:30","11:15"],
+["RF242","19:10","19:55"]
+]},
+
+{from:"MDA",to:"KOA",flights:[
+["RF341","11:00","11:45"],
+["RF342","17:00","17:45"]
+]},
+
+{from:"DDA",to:"RCI",flights:[
+["RF441","11:40","12:25"],
+["RF442","20:00","20:45"]
+]},
+
+{from:"RSE",to:"RCH",flights:[
+["RF261","12:20","13:05"],
+["RF262","19:30","20:15"]
+]},
+
+{from:"RNE",to:"RCI",flights:[
+["RF361","13:00","13:50"],
+["RF362","20:40","21:30"]
+]},
+
+{from:"RCI",to:"MJI",flights:[
+["RF461","13:40","14:25"],
+["RF462","21:30","22:15"]
+]},
+
+{from:"RDA",to:"GPT",flights:[
+["RF101","14:20","17:10"],
+["RF102","18:30","21:20"],
+["RF103","21:30","00:20"]
+]},
+
+{from:"RDA",to:"GMI",flights:[
+["RF601","15:00","18:05"],
+["RF602","19:00","22:05"],
+["RF603","22:00","01:05"]
+]},
+
+{from:"RDA",to:"GRK",flights:[
+["RF701","15:40","18:35"],
+["RF702","20:40","23:35"]
+]},
+
+{from:"RDA",to:"RBL",flights:[
+["RF121","16:20","19:40"],
+["RF122","20:30","23:50"],
+["RF123","23:00","02:20"]
+]},
+
+{from:"RVA",to:"GPT",flights:[
+["RF621","17:00","19:50"],
+["RF622","21:00","23:50"]
+]},
+
+{from:"RNE",to:"GMI",flights:[
+["RF721","17:40","20:35"],
+["RF722","22:00","00:55"]
+]},
+
+{from:"KOA",to:"GPT",flights:[
+["RF141","18:20","21:15"],
+["RF142","22:20","01:15"]
+]},
+
+{from:"RBL",to:"GRK",flights:[
+["RF641","19:00","22:10"],
+["RF642","23:00","02:10"],
+["RF643","01:00","04:10"]
+]},
+
+{from:"GPT",to:"GMI",flights:[
+["RF741","19:40","22:25"],
+["RF742","23:30","02:15"]
+]},
+
+{from:"GRK",to:"RVA",flights:[
+["RF161","20:20","23:15"],
+["RF162","00:20","03:15"]
+]},
+
+{from:"RBL",to:"GMI",flights:[
+["RF661","21:00","00:10"],
+["RF662","22:30","01:40"],
+["RF663","01:00","04:10"]
+]},
+
+{from:"KOA",to:"RBL",flights:[
+["RF761","21:40","00:50"],
+["RF762","01:30","04:40"]
+]}
+
+];
+
+
+/* =========================
+   기체
+========================= */
+
+const fleet = [
+
+["RD8001","B737-800","738"],
+["RD6405","B777-200F","77F"],
+["RD8033","B787-9","789"],
+["RD9323","A330-200","332"],
+["RD7733","A321neo","32N"],
+["RD2562","A380-800","388"],
+["CG-001","화물기","CARGO"]
+
+];
+
+const aircraftPool = [
+"738",
+"739",
+"320",
+"20N",
+"32N",
+"BCS3",
+"332",
+"333",
+"789",
+"77X",
+"748",
+"744",
+"388"
+];
+
+
+/* =========================
+   항공기 자동 배정
+   같은 날짜에도 편마다 다르게
+========================= */
+
+function getAircraft(number){
+
+  let sum=0;
+
+  for(let i=0;i<number.length;i++){
+    sum += number.charCodeAt(i);
+  }
+
+  return aircraftPool[sum % aircraftPool.length];
+
+}
+
+
+/* =========================
+   상태 자동 결정
+========================= */
+
+function getStatus(number){
+
+  let sum=0;
+
+  for(let i=0;i<number.length;i++){
+    sum += number.charCodeAt(i);
+  }
+
+  const n = sum % 100;
+
+  if(n < 7) return ["cancelled","🔴 결항"];
+  if(n < 15) return ["delay","🟡 지연"];
+  if(n < 19) return ["boarding","🔵 탑승 중"];
+  if(n < 25) return ["arrived","🛬 도착"];
+
+  return ["on-time","🟢 정시"];
+
+}
+
+
+/* =========================
+   선택창
+========================= */
+
+const fromSelect=document.getElementById("from");
+const toSelect=document.getElementById("to");
+
+for(const key in airports){
+
+  const a=airports[key];
+
+  fromSelect.innerHTML +=
+    `<option value="${a.code}">
+      ${a.code} · ${a.name}
+    </option>`;
+
+  toSelect.innerHTML +=
+    `<option value="${a.code}">
+      ${a.code} · ${a.name}
+    </option>`;
+
+}
+
+fromSelect.value="RDA";
+toSelect.value="RCI";
+
+
+/* =========================
+   공항 목록
+========================= */
+
+const airportList=document.getElementById("airportList");
+
+for(const key in airports){
+
+  const a=airports[key];
+
+  airportList.innerHTML += `
+    <div class="airport">
+      <strong>${a.code}</strong><br>
+      ${a.name}<br>
+      <small>${a.iata} · ${a.type}</small>
+    </div>
+  `;
+
+}
+
+
+/* =========================
+   기체 목록
+========================= */
+
+const fleetList=document.getElementById("fleetList");
+
+fleet.forEach(a=>{
+
+  fleetList.innerHTML += `
+    <div class="aircraft-box">
+      <strong>${a[0]}</strong>
+      · ${a[1]}
+      <br>
+      <small>ICAO: ${a[2]}</small>
+    </div>
+  `;
+
+});
+
+
+/* =========================
+   전체 운항 현황 계산
+========================= */
+
+function updateStats(){
+
+  let total=0;
+  let onTime=0;
+  let delayed=0;
+  let boarding=0;
+  let arrived=0;
+  let cancelled=0;
+
+  routes.forEach(route=>{
+
+    route.flights.forEach(flight=>{
+
+      total++;
+
+      const status=getStatus(flight[0])[0];
+
+      if(status==="on-time") onTime++;
+      if(status==="delay") delayed++;
+      if(status==="boarding") boarding++;
+      if(status==="arrived") arrived++;
+      if(status==="cancelled") cancelled++;
+
+    });
+
+  });
+
+  document.getElementById("totalFlights").textContent=total;
+  document.getElementById("onTime").textContent=onTime;
+  document.getElementById("delayed").textContent=delayed;
+  document.getElementById("boarding").textContent=boarding;
+  document.getElementById("arrived").textContent=arrived;
+  document.getElementById("cancelled").textContent=cancelled;
+
+}
+
+updateStats();
+
+
+/* =========================
+   검색
+========================= */
+
+let selectedFlight=null;
+let selectedSeat=null;
+
+function searchFlights(){
+
+  const from=fromSelect.value;
+  const to=toSelect.value;
+  const number=
+    document.getElementById("flightSearch")
+    .value.trim()
+    .toUpperCase();
+
+  const result=document.getElementById("results");
+  const list=document.getElementById("flightList");
+
+  result.classList.remove("hidden");
+  list.innerHTML="";
+
+  let matches=[];
+
+  routes.forEach(route=>{
+
+    route.flights.forEach(flight=>{
+
+      if(number){
+
+        if(flight[0]===number){
+
+          matches.push({
+            route,
+            flight
+          });
+
+        }
+
+      }else{
+
+        if(route.from===from && route.to===to){
+
+          matches.push({
+            route,
+            flight
+          });
+
+        }
+
+      }
+
+    });
+
+  });
+
+
+  if(matches.length===0){
+
+    list.innerHTML=`
+      <div class="flight">
+        <h3>😢 운항편이 없습니다.</h3>
+        <p>다른 공항이나 항공편 번호를 검색해보세요.</p>
+      </div>
+    `;
+
+    result.scrollIntoView({behavior:"smooth"});
+    return;
+
+  }
+
+
+  matches.forEach(item=>{
+
+    const route=item.route;
+    const flight=item.flight;
+
+    const number=flight[0];
+    const departure=flight[1];
+    const arrival=flight[2];
+
+    const aircraft=getAircraft(number);
+    const status=getStatus(number);
+
+    const cancelled=status[0]==="cancelled";
+
+    list.innerHTML += `
+
+      <div class="flight">
+
+        <div class="flight-head">
+
+          <div>
+
+            <span class="badge">
+              ${aircraft}
+            </span>
+
+            <span class="status ${status[0]}">
+              ${status[1]}
+            </span>
+
+            <div class="flight-number">
+              ${number}
+            </div>
+
+          </div>
+
+          <button
+            class="select-btn"
+            ${cancelled?"disabled":""}
+            onclick="selectFlight(
+              '${number}',
+              '${departure}',
+              '${arrival}',
+              '${aircraft}',
+              '${status[1]}'
+            )">
+
+            ${cancelled?"결항":"선택"}
+
+          </button>
+
+        </div>
+
+        <div class="route">
+          ${route.from} → ${route.to}
+        </div>
+
+        <div class="time">
+          🛫 ${departure}
+         　→　
+          🛬 ${arrival}
+        </div>
+
+        <div class="aircraft">
+          운항 기종:
+          <strong>${aircraft}</strong>
+        </div>
+
+        <div class="aircraft">
+          🚪 터미널 1 · 게이트
+          ${20 + (number.charCodeAt(2)%25)}
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+  result.scrollIntoView({behavior:"smooth"});
+
+}
+
+
+/* =========================
+   항공편 선택
+========================= */
+
+function selectFlight(
+  number,
+  departure,
+  arrival,
+  aircraft,
+  status
+){
+
+  selectedFlight={
+    number,
+    departure,
+    arrival,
+    aircraft,
+    status
+  };
+
+  selectedSeat=null;
+
+  document.getElementById("seatCard")
+    .classList.remove("hidden");
+
+  document.getElementById("selectedFlightInfo")
+    .innerHTML=`
+
+      <strong>${number}</strong>
+      · ${fromSelect.value} → ${toSelect.value}
+      · ${departure} → ${arrival}
+      · ${aircraft}
+      · ${status}
+
+  `;
+
+  createSeats();
+
+  document.getElementById("seatCard")
+    .scrollIntoView({behavior:"smooth"});
+
+}
+
+
+/* =========================
+   좌석
+========================= */
+
+function createSeats(){
+
+  const map=document.getElementById("seatMap");
+
+  map.innerHTML="";
+
+  const takenSeats=[
+    "1B",
+    "2C",
+    "3D",
+    "5A"
+  ];
+
+  for(let row=1;row<=10;row++){
+
+    ["A","B","C","D","E","F"]
+      .forEach(letter=>{
+
+        const seatNumber=row+letter;
+
+        const button=document.createElement("button");
+
+        button.className="seat";
+        button.textContent=seatNumber;
+
+        if(takenSeats.includes(seatNumber)){
+
+          button.classList.add("taken");
+          button.disabled=true;
+
+        }else{
+
+          button.onclick=()=>{
+
+            document
+              .querySelectorAll(".seat")
+              .forEach(s=>
+                s.classList.remove("selected")
+              );
+
+            button.classList.add("selected");
+
+            selectedSeat=seatNumber;
+
+          };
+
+        }
+
+        map.appendChild(button);
+
+      });
+
+  }
+
+}
+
+
+/* =========================
+   예약 완료
+========================= */
+
+function completeBooking(){
+
+  if(!selectedSeat){
+
+    alert("좌석을 먼저 선택해주세요! 💺");
+    return;
+
+  }
+
+  const complete=document.getElementById("complete");
+
+  document.getElementById("bookingInfo").innerHTML=`
+
+    ✈️ ${selectedFlight.number}<br>
+    ${fromSelect.value} → ${toSelect.value}<br>
+    🕐 ${selectedFlight.departure}
+    → ${selectedFlight.arrival}<br>
+    ✈️ ${selectedFlight.aircraft}<br>
+    💺 좌석 ${selectedSeat}<br>
+    ${selectedFlight.status}
+
+  `;
+
+  complete.classList.remove("hidden");
+
+  complete.scrollIntoView({behavior:"smooth"});
+
+}
+
+
+/* =========================
+   모바일 탑승권
+========================= */
+
+function showBoardingPass(){
+
+  const box=document.getElementById("boardingPass");
+
+  box.classList.remove("hidden");
+
+  const gate=
+    20+(selectedFlight.number.charCodeAt(2)%25);
+
+  box.innerHTML=`
+
+    <div class="boarding-pass">
+
+      <div class="pass-top">
+
+        <strong>✈️ RUDAAIR</strong>
+
+        <span>RF</span>
+
+      </div>
+
+      <div class="pass-route">
+
+        ${fromSelect.value}
+        →
+        ${toSelect.value}
+
+      </div>
+
+      <div class="pass-grid">
+
+        <div class="pass-item">
+          <small>편명</small>
+          <strong>${selectedFlight.number}</strong>
+        </div>
+
+        <div class="pass-item">
+          <small>좌석</small>
+          <strong>${selectedSeat}</strong>
+        </div>
+
+        <div class="pass-item">
+          <small>기체</small>
+          <strong>${selectedFlight.aircraft}</strong>
+        </div>
+
+        <div class="pass-item">
+          <small>게이트</small>
+          <strong>${gate}</strong>
+        </div>
+
+        <div class="pass-item">
+          <small>터미널</small>
+          <strong>1</strong>
+        </div>
+
+        <div class="pass-item">
+          <small>탑승시간</small>
+          <strong>${selectedFlight.departure}</strong>
+        </div>
+
+      </div>
+
+      <div class="fake-qr">
+        ▦ ▦ ▦ ▦ ▦ ▦ ▦<br>
+        ▦ ▦ ▦ ▦ ▦ ▦ ▦<br>
+        ▦ ▦ ▦ ▦ ▦ ▦ ▦
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   다크 모드
+========================= */
+
+function toggleDark(){
+
+  document.body.classList.toggle("dark");
+
+}
+
+</script>
 
 </body>
 </html>
+```
